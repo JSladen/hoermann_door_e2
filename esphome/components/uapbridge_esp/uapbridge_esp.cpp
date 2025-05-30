@@ -100,14 +100,14 @@ void UAPBridge_esp::receive() {
   uint8_t   counter = 0;
   bool   newData = false;
   while (this->available() > 0) {
-if ESPHOME_LOGLEVEL >= ESPHOME_LOG_LEVEL_VERY_VERBOSE
+#if ESPHOME_LOGLEVEL >= ESPHOME_LOG_LEVEL_VERY_VERBOSE
     if (this->byte_cnt > 4) {
     	// data have not been fetched and will be ignored --> log them at least for debugging purposes
     	char temp[4];
     	sprintf(temp, "%02X ", this->rx_data[0]);
     	ESP_LOGVV(TAG, "in receive while avaiable: %s", temp);
     }
-endif
+#endif
     // shift old elements and read new; only the last 5 bytes are evaluated; if there are more in the buffer, the older ones are ignored
     for (uint8_t i = 0; i < 4; i++) {
       this->rx_data[i] = this->rx_data[i+1];
