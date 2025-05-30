@@ -175,8 +175,8 @@ void UAPBridge_esp::receive() {
     }
 #if ESPHOME_LOGLEVEL >= ESPHOME_LOG_LEVEL_VERY_VERBOSE
     // just print the data
-    if (this->byte_cnt >= 5) {
-      ESP_LOGVV(TAG, "Just printed: %s", print_data(this->rx_data, 0, 5));
+    if (this->byte_cnt >= 4) {
+      ESP_LOGVV(TAG, "Just printed: %s", print_data(this->rx_data, 0, 4));
     }	
 #endif
   }
