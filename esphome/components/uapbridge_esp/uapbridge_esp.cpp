@@ -173,12 +173,12 @@ void UAPBridge_esp::receive() {
       this->valid_broadcast = true;
       this->data_has_changed = true;
     }
-#if ESPHOME_LOGLEVEL >= ESPHOME_LOG_LEVEL_VERY_VERBOSE
+if ESPHOME_LOGLEVEL >= ESPHOME_LOG_LEVEL_VERY_VERBOSE
     // just print the data
     if (this->byte_cnt >= 4) {
       ESP_LOGVV(TAG, "Just printed: %s", print_data(this->rx_data, 0, 4));
     }	
-#endif
+endif
   }
 }
 
