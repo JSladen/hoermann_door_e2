@@ -101,7 +101,7 @@ void UAPBridge_esp::receive() {
   bool   newData = false;
   while (this->available() > 0) {
 if ESPHOME_LOGLEVEL >= ESPHOME_LOG_LEVEL_VERY_VERBOSE
-    if (this->byte_cnt > 5) {
+    if (this->byte_cnt > 4) {
     	// data have not been fetched and will be ignored --> log them at least for debugging purposes
     	char temp[4];
     	sprintf(temp, "%02X ", this->rx_data[0]);
@@ -173,10 +173,10 @@ endif
       this->valid_broadcast = true;
       this->data_has_changed = true;
     }
-if ESPHOME_LOGLEVEL >= ESPHOME_LOG_LEVEL_VERY_VERBOSE
+#if ESPHOME_LOGLEVEL >= ESPHOME_LOG_LEVEL_VERY_VERBOSE
     // just print the data
-    if (this->byte_cnt >= 4) {
-      ESP_LOGVV(TAG, "Just printed: %s", print_data(this->rx_data, 0, 4));
+    if (this->byte_cnt >= 5) {
+      ESP_LOGVV(TAG, "Just printed: %s", print_data(this->rx_data, 0, 5));
     }	
 #endif
   }
