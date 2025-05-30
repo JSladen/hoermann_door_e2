@@ -100,7 +100,7 @@ void UAPBridge_esp::receive() {
   uint8_t   counter = 0;
   bool   newData = false;
   while (this->available() > 0) {
-#if ESPHOME_LOGLEVEL >= ESPHOME_LOG_LEVEL_VERY_VERBOSE
+if ESPHOME_LOGLEVEL >= ESPHOME_LOG_LEVEL_VERY_VERBOSE #uncommented
     if (this->byte_cnt > 5) {
     	// data have not been fetched and will be ignored --> log them at least for debugging purposes
     	char temp[4];
@@ -120,7 +120,6 @@ void UAPBridge_esp::receive() {
   }
   if (newData) {
     ESP_LOGVV(TAG, "new data received");
-    ESP_LOGVV(TAG, "Just printed: %s", print_data(this->rx_data, 0, 5));
     newData = false;
     // Slave scan
     // 28 82 01 80 06
@@ -174,12 +173,12 @@ void UAPBridge_esp::receive() {
       this->valid_broadcast = true;
       this->data_has_changed = true;
     }
-#if ESPHOME_LOGLEVEL >= ESPHOME_LOG_LEVEL_VERY_VERBOSE
+if ESPHOME_LOGLEVEL >= ESPHOME_LOG_LEVEL_VERY_VERBOSE #uncommented
     // just print the data
     if (this->byte_cnt >= 4) {
       ESP_LOGVV(TAG, "Just printed: %s", print_data(this->rx_data, 0, 4));
     }	
-#endif
+endif #uncommented
   }
 }
 
