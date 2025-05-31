@@ -26,8 +26,8 @@ class UAPBridge_esp : public esphome::uapbridge::UAPBridge {
   public:
     // Enumeration for actions
     enum hoermann_action_t {
-//      hoermann_action_stop          = 0x10FF, // thanks to https://github.com/avshrs/ESP32_Hormann_Supramatic_e3/blob/main/src/hoermann.h#L20 !
-      hoermann_action_stop          = 0x1010, // thanks to https://github.com/avshrs/ESP32_Hormann_Supramatic_e3/blob/main/src/hoermann.h#L20 !
+      hoermann_action_stop          = 0x10FF, // thanks to https://github.com/avshrs/ESP32_Hormann_Supramatic_e3/blob/main/src/hoermann.h#L20 !
+//      hoermann_action_stop          = 0x1010, // Testing alternate stop options for E2
       hoermann_action_open          = 0x1001,
       hoermann_action_close         = 0x1002,
       hoermann_action_impulse       = 0x1004,
