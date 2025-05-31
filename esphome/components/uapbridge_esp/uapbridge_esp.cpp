@@ -338,7 +338,7 @@ void UAPBridge_esp::handle_state_change(hoermann_state_t new_state) {
       this->state_string = "Venting";
       break;
     case hoermann_state_stopped:
-#      this->state_string = "Stopped";
+//      this->state_string = "Stopped";
       this->state_string = "Partial/Moving";
       break;
     default:
