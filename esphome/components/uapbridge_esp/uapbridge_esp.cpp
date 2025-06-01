@@ -150,15 +150,16 @@ void UAPBridge_esp::receive() {
         this->broadcast_status |= (uint16_t)this->rx_data[3] << 8;
       }
     }
-    // Broadcast status E2 (only 4 byte)
+    // Broadcast status E2 (only 4 byte, pad the broadcast message )
     // 00 01 02 CA
     if (this->rx_data[1] == BROADCAST_ADDR) {
       length = this->rx_data[2] & 0x0F;
       if ( length == 1 && calc_crc8(&this->rx_data[1], length + 3) == 0x00) {
         ESP_LOGVV(TAG, "Broadcast E2: %s", print_data(this->rx_data, 1, 5));
+        ESP_LOG(TAG, "Broadcast E2: %s", print_data(this->rx_data, 1, 5));
         ESP_LOGV(TAG, "->      Broadcast");
         this->broadcast_status = this->rx_data[3];
-//        this->broadcast_status |= (uint16_t)this->rx_data[3] << 8;
+        this->broadcast_status |= (uint16_t)this->0x0F << 8;
       }
     }
     // Slave status request (only 4 byte --> other indices of rx_data!)
