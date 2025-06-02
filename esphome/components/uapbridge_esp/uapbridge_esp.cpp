@@ -168,6 +168,7 @@ void UAPBridge_esp::receive() {
       length = this->rx_data[2] & 0x0F;
       if (this->rx_data[3] == CMD_SLAVE_STATUS_REQUEST && length == 1 && calc_crc8(&this->rx_data[1], length + 3) == 0x00) {
         ESP_LOGVV(TAG, "Slave status request: %s", print_data(this->rx_data, 1, 5));
+        ESP_LOGI(TAG, "Slave status request: %s", print_data(this->rx_data, 1, 5));
         ESP_LOGV(TAG, "->      Slave status request");
         counter = (this->rx_data[2] & 0xF0) + 0x10;
         this->tx_data[0] = UAP1_ADDR_MASTER;
