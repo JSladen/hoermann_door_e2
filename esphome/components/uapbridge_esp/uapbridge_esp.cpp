@@ -253,7 +253,7 @@ void UAPBridge_esp::action_close() {
 void UAPBridge_esp::action_stop() {
 //  ESP_LOGD(TAG, "Action: stop called");
   ESP_LOGI(TAG, "Action: stop called");
-  this->set_command((this->state == hoermann_state_opening || this->state == hoermann_state_closing), hoermann_action_stop);
+  this->set_command((this->state == hoermann_state_stopped), hoermann_action_stop); //E2 reports 00 (stopped) while in motion or partial, so must be allowed to signal stop in this state
 }
 
 void UAPBridge_esp::action_venting() {
