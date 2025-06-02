@@ -159,7 +159,7 @@ void UAPBridge_esp::receive() {
         ESP_LOG(TAG, "Broadcast E2: %s", print_data(this->rx_data, 1, 5));
         ESP_LOGV(TAG, "->      Broadcast");
         this->broadcast_status = this->rx_data[3];
-        this->broadcast_status |= (uint16_t)this->0x0F << 8;
+//        this->broadcast_status |= (uint16_t)this->0x0F << 8;
       }
     }
     // Slave status request (only 4 byte --> other indices of rx_data!)
