@@ -24,7 +24,7 @@ CONFIG_SCHEMA = cv.Schema(
             UAPBridgeButtonImpulse, icon="mdi:arrow-up-down"
         ),
         cv.Optional(CONF_BUTTON_LIGHT): button.button_schema(
-            UAPBridgeButtonLight, icon="mdi:light"
+            UAPBridgeButtonLight, icon="mdi:lightbulb"
         ),
     }
 ).extend(cv.COMPONENT_SCHEMA)
