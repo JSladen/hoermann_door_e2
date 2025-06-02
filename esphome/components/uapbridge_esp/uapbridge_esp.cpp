@@ -330,7 +330,7 @@ char* UAPBridge_esp::print_data(uint8_t *p_data, uint8_t from, uint8_t to) {
 void UAPBridge_esp::handle_state_change(hoermann_state_t new_state) {
   this->state = new_state;
   // ESP_LOGV(TAG, "State changed from %s to %d", this->state_string.c_str(), new_state);
-  ESP_LOGVITAG, "State changed from %s to %d", this->state_string.c_str(), new_state);
+  ESP_LOGVI(TAG, "State changed from %s to %d", this->state_string.c_str(), new_state);
   switch (new_state) {
     case hoermann_state_open:
       this->state_string = "Open";
