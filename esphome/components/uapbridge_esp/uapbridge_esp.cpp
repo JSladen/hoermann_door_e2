@@ -253,6 +253,7 @@ void UAPBridge_esp::action_close() {
 void UAPBridge_esp::action_stop() {
 //  ESP_LOGD(TAG, "Action: stop called");
   ESP_LOGI(TAG, "Action: stop called");
+//  this->set_command((this->state == hoermann_state_opening || this->state == hoermann_state_closing), hoermann_action_stop);
   this->set_command((this->state == hoermann_state_stopped), hoermann_action_stop); //E2 reports 00 (stopped) while in motion or partial, so must be allowed to signal stop in this state
 }
 
@@ -360,7 +361,8 @@ void UAPBridge_esp::handle_state_change(hoermann_state_t new_state) {
 }
 
 void UAPBridge_esp::update_boolean_state(const char * name, bool &current_state, bool new_state) {
-  ESP_LOGV(TAG, "update_boolean_state: %s from %s to %s", name, current_state ? "true" : "false", new_state ? "true" : "false");
+  // ESP_LOGV(TAG, "update_boolean_state: %s from %s to %s", name, current_state ? "true" : "false", new_state ? "true" : "false");
+  ESP_LOGI(TAG, "update_boolean_state: %s from %s to %s", name, current_state ? "true" : "false", new_state ? "true" : "false");
   if (current_state != new_state) {
     current_state = new_state;
     this->data_has_changed = true;
