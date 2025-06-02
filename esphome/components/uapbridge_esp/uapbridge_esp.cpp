@@ -239,39 +239,33 @@ void UAPBridge_esp::set_command(bool cond, const hoermann_action_t command) {
 }
 
 void UAPBridge_esp::action_open() {
-//  ESP_LOGD(TAG, "Action: open called");
-  ESP_LOGI(TAG, "Action: open called");
+  ESP_LOGD(TAG, "Action: open called");
   this->set_command(this->state != hoermann_state_open, hoermann_action_open);
 }
 
 void UAPBridge_esp::action_close() {
-  // ESP_LOGD(TAG, "Action: close called");
-  ESP_LOGI(TAG, "Action: close called");
+  ESP_LOGD(TAG, "Action: close called");
   this->set_command(this->state != hoermann_state_closed, hoermann_action_close);
 }
 
 void UAPBridge_esp::action_stop() {
-//  ESP_LOGD(TAG, "Action: stop called");
-  ESP_LOGI(TAG, "Action: stop called");
-//  this->set_command((this->state == hoermann_state_opening || this->state == hoermann_state_closing), hoermann_action_stop);
+  ESP_LOGD(TAG, "Action: stop called");
+//  this->set_command((this->state == hoermann_state_opening || this->state == hoermann_state_closing), hoermann_action_stop); //Default for E3, as opening or closing state is known
   this->set_command((this->state == hoermann_state_stopped), hoermann_action_stop); //E2 reports 00 (stopped) while in motion or partial, so must be allowed to signal stop in this state
 }
 
 void UAPBridge_esp::action_venting() {
-  // ESP_LOGD(TAG, "Action: venting called");
-  ESP_LOGI(TAG, "Action: venting called");
+  ESP_LOGD(TAG, "Action: venting called");
   this->set_command(this->state != hoermann_state_venting, hoermann_action_venting);
 }
 
 void UAPBridge_esp::action_toggle_light() {
-  // ESP_LOGD(TAG, "Action: toggle light called");
-  ESP_LOGI(TAG, "Action: toggle light called");
+  ESP_LOGD(TAG, "Action: toggle light called");
   this->set_command(true, hoermann_action_toggle_light);
 }
 
 void UAPBridge_esp::action_impulse() {
-  // ESP_LOGD(TAG, "Action: impulse called");
-  ESP_LOGI(TAG, "Action: impulse called");
+  ESP_LOGD(TAG, "Action: impulse called");
   this->set_command(true, hoermann_action_impulse);
 }
 
@@ -289,14 +283,12 @@ void UAPBridge_esp::set_venting(bool state) {
   } else {
     this->action_close();
   }
-//  ESP_LOGD(TAG, "Venting state set to %s", state ? "ON" : "OFF");
-  ESP_LOGI(TAG, "Venting state set to %s", state ? "ON" : "OFF");
+  ESP_LOGD(TAG, "Venting state set to %s", state ? "ON" : "OFF");
 }
 
 void UAPBridge_esp::set_light(bool state) {
   this->set_command((this->light_enabled != state), hoermann_action_toggle_light);
-  // ESP_LOGD(TAG, "Light state set to %s", state ? "ON" : "OFF");
-  ESP_LOGI(TAG, "Light state set to %s", state ? "ON" : "OFF");
+  ESP_LOGD(TAG, "Light state set to %s", state ? "ON" : "OFF");
 }
 
 uint8_t UAPBridge_esp::calc_crc8(uint8_t *p_data, uint8_t length) {
@@ -330,8 +322,7 @@ char* UAPBridge_esp::print_data(uint8_t *p_data, uint8_t from, uint8_t to) {
 
 void UAPBridge_esp::handle_state_change(hoermann_state_t new_state) {
   this->state = new_state;
-  // ESP_LOGV(TAG, "State changed from %s to %d", this->state_string.c_str(), new_state);
-  ESP_LOGI(TAG, "State changed from %s to %d", this->state_string.c_str(), new_state);
+  ESP_LOGV(TAG, "State changed from %s to %d", this->state_string.c_str(), new_state);
   switch (new_state) {
     case hoermann_state_open:
       this->state_string = "Open";
