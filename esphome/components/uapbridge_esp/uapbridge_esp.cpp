@@ -361,8 +361,7 @@ void UAPBridge_esp::handle_state_change(hoermann_state_t new_state) {
 }
 
 void UAPBridge_esp::update_boolean_state(const char * name, bool &current_state, bool new_state) {
-  // ESP_LOGV(TAG, "update_boolean_state: %s from %s to %s", name, current_state ? "true" : "false", new_state ? "true" : "false");
-  ESP_LOGI(TAG, "update_boolean_state: %s from %s to %s", name, current_state ? "true" : "false", new_state ? "true" : "false");
+  ESP_LOGV(TAG, "update_boolean_state: %s from %s to %s", name, current_state ? "true" : "false", new_state ? "true" : "false");
   if (current_state != new_state) {
     current_state = new_state;
     this->data_has_changed = true;
