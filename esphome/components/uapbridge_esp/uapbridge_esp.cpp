@@ -121,6 +121,7 @@ void UAPBridge_esp::receive() {
   if (newData) {
     ESP_LOGVV(TAG, "new data received");
     ESP_LOGVV(TAG, "Just printed: %s", print_data(this->rx_data, 0, 5));
+    ESP_LOGI(TAG, "Just printed: %s", print_data(this->rx_data, 0, 5));
     newData = false;
     // Slave scan
     // 28 82 01 80 06
@@ -156,10 +157,9 @@ void UAPBridge_esp::receive() {
       length = this->rx_data[2] & 0x0F;
       if ( length == 1 && calc_crc8(&this->rx_data[1], length + 3) == 0x00) {
         ESP_LOGVV(TAG, "Broadcast E2: %s", print_data(this->rx_data, 1, 5));
-        ESP_LOGI(TAG, "Broadcast E2: %s", print_data(this->rx_data, 1, 5)); //Added for debugging E2
+     //   ESP_LOGI(TAG, "Broadcast E2: %s", print_data(this->rx_data, 1, 5)); //Added for debugging E2
         ESP_LOGV(TAG, "->      Broadcast");
         this->broadcast_status = this->rx_data[3];
-//        this->broadcast_status |= (uint16_t)this->0x0F << 8;  // Was Testing if padding to 2 byte responses helps in anyway to know we are dealing with E2 rather than E3. Not tested yet
       }
     }
     // Slave status request (only 4 byte --> other indices of rx_data!)
