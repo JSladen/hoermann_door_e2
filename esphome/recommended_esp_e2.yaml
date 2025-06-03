@@ -1,8 +1,7 @@
-
 # These substitutions allow the end user to override certain values
 substitutions:
-  name: "supramatic-e3"
-  friendly_name: "SupraMatic E3"
+  name: "supramatic-e2"
+  friendly_name: "SupraMatic E2"
   state: "State"
   opening: "Opening"
   closing: "Closing"
@@ -20,6 +19,7 @@ substitutions:
   sw_light: "Switch Light" 
   btn_vent: "${friendly_name} Vent" 
   btn_impulse: "${friendly_name} Impulse" 
+  btn_light: "${friendly_name} Light Toggle" 
 
 esphome:
   name: "${name}"
@@ -31,7 +31,8 @@ esp32:
     type: esp-idf # mandatory for esp version
 
 external_components:
-    - source: github://14yannick/hoermann_door
+#    - source: github://14yannick/hoermann_door
+    - source: github://JSladen/hoermann_door_e2
       refresh: 0s
 
 wifi:
@@ -67,36 +68,36 @@ cover:
     name: ${friendly_name}
     device_class: garage
 
-switch:
-  - platform: uapbridge
-    venting_switch:
-      id: venting_switch
-      name: "${sw_vent}"
-#uncomment if you want to use the switch insteat of the light component for light
+#switch:
+#  - platform: uapbridge
+#    venting_switch:
+#      id: venting_switch
+#      name: "${sw_vent}"
+#uncomment if you want to use the switch instead of the light component for light
 #    light_switch:
 #      id: light_switch
 #      name: "${sw_light}"
 
 binary_sensor:
   - platform: uapbridge
-    relay_state:
-      name: "${relay_state}"
+#    relay_state:
+#      name: "${relay_state}"
     error_state:
       name: "${error_state}"
-    prewarn_state:
-      name: "${prewarn_state}"
+#    prewarn_state:
+#      name: "${prewarn_state}"
     got_valid_broadcast:
       name: "${got_valid_broadcast}"
 
-output:
-  - platform: uapbridge
-    id: gd_light
+#output:
+#  - platform: uapbridge
+#    id: gd_light
 
-light:
-  - platform: uapbridge
-    id: my_light
-    name: "${light}"
-    output: gd_light
+#light:
+#  - platform: uapbridge
+#    id: my_light
+#    name: "${light}"
+#    output: gd_light
 
 text_sensor:
   - platform: uapbridge
@@ -120,6 +121,9 @@ button:
     impulse_button:
       id: button_impulse
       name: "${btn_impulse}"
+    light_button:    #no light state on e2, so works nicely with button instead of switch or light
+      id: button_light
+      name: "${btn_light}"
 
 #optional BME Sensor
 #i2c:
